@@ -2,6 +2,8 @@ import * as THREE from 'three'
 import System from './System'
 import GameObject from '../GameObject'
 
+const CAMERA_POSITION = 40
+
 export default class Render implements System {
   scene: THREE.Scene
   renderer: THREE.Renderer
@@ -40,8 +42,10 @@ export default class Render implements System {
 
     window.addEventListener('resize', handleWindowResize, false)
 
-    camera.rotation.x = Math.PI / 4
-    camera.position.z = 60
+    // get the isometric look
+    // see: https://stackoverflow.com/a/23451591
+    camera.position.set(CAMERA_POSITION, CAMERA_POSITION, CAMERA_POSITION)
+    camera.lookAt(scene.position)
 
     createLights().forEach(light => scene.add(light))
 
@@ -63,7 +67,7 @@ export default class Render implements System {
       }
 
       if (followCamera && followCamera.enabled) {
-        this.camera.lookAt(mesh.mesh.position)
+        this.camera.position.copy(mesh.mesh.position.clone().addScalar(CAMERA_POSITION))
       }
 
       if (!this.scene.getObjectById(mesh.mesh.id)) {
