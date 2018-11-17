@@ -8127,6 +8127,10 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
+vox.js@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/vox.js/-/vox.js-1.1.0.tgz#91775efe0cb0a79a38f2b4e46181289656774d57"
+
 w3c-hr-time@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/w3c-hr-time/-/w3c-hr-time-1.0.1.tgz#82ac2bff63d950ea9e3189a58a65625fedf19045"

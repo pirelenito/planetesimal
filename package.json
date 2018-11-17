@@ -12,7 +12,8 @@
     "react-dom": "^16.6.3",
     "react-scripts": "2.1.1",
     "three": "^0.98.0",
-    "typescript": "^3.1.6"
+    "typescript": "^3.1.6",
+    "vox.js": "^1.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
