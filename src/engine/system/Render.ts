@@ -12,7 +12,7 @@ export default class Render implements System {
   constructor(canvas: HTMLCanvasElement) {
     const scene = new THREE.Scene()
     const aspect = window.innerWidth / window.innerHeight
-    const frustumSize = 40
+    const frustumSize = 60
     const camera = new THREE.OrthographicCamera(
       (frustumSize * aspect) / -2,
       (frustumSize * aspect) / 2,
