@@ -1,9 +1,49 @@
-import React, { Component } from 'react'
-import Renderer from './Renderer'
+import React, { Component, createRef } from 'react'
+import * as THREE from 'three'
+import { Engine, Render, GameObject } from './engine'
 
-class App extends Component {
+interface AppProps {}
+
+class App extends Component<AppProps, {}> {
+  ref: React.RefObject<HTMLCanvasElement>
+
+  constructor(props: AppProps) {
+    super(props)
+    this.ref = createRef()
+  }
+
+  componentDidMount() {
+    if (!this.ref.current) return
+
+    const engine = new Engine()
+    engine.addSystem(new Render(this.ref.current))
+
+    const playerGeometry = new THREE.BoxGeometry(1, 1, 1)
+    const playerMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 })
+    const playerMesh = new THREE.Mesh(playerGeometry, playerMaterial)
+
+    const player = new GameObject()
+    player.mesh = { mesh: playerMesh }
+    player.position = { position: new THREE.Vector3(0, 0, -1) }
+    player.followCamera = { enabled: true }
+
+    engine.addGameObject(player)
+
+    const enemyGeometry = new THREE.BoxGeometry(1, 1, 1)
+    const enemyMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 })
+    const enemyMesh = new THREE.Mesh(enemyGeometry, enemyMaterial)
+
+    const enemy = new GameObject()
+    enemy.mesh = { mesh: enemyMesh }
+    enemy.position = { position: new THREE.Vector3(3, 0, -1) }
+
+    engine.addGameObject(enemy)
+
+    engine.start()
+  }
+
   render() {
-    return <Renderer />
+    return <canvas ref={this.ref} />
   }
 }
 
