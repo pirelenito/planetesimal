@@ -1,3 +1,3 @@
 export default interface Velocity {
-  velocity: THREE.Vector2
+  vector: THREE.Vector3
 }

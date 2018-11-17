@@ -1,6 +1,6 @@
 import React, { Component, createRef } from 'react'
 import * as THREE from 'three'
-import { Engine, Render, GameObject } from './engine'
+import { Engine, Render, GameObject, Movement } from './engine'
 
 interface AppProps {}
 
@@ -17,6 +17,7 @@ class App extends Component<AppProps, {}> {
 
     const engine = new Engine()
     engine.addSystem(new Render(this.ref.current))
+    engine.addSystem(new Movement())
 
     const playerGeometry = new THREE.BoxGeometry(1, 1, 1)
     const playerMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 })
@@ -24,7 +25,8 @@ class App extends Component<AppProps, {}> {
 
     const player = new GameObject()
     player.mesh = { mesh: playerMesh }
-    player.position = { position: new THREE.Vector3(0, 0, -1) }
+    player.position = { vector: new THREE.Vector3(0, 0, -1) }
+    player.velocity = { vector: new THREE.Vector3(0, 0.02, 0) }
     player.followCamera = { enabled: true }
 
     engine.addGameObject(player)
@@ -35,7 +37,8 @@ class App extends Component<AppProps, {}> {
 
     const enemy = new GameObject()
     enemy.mesh = { mesh: enemyMesh }
-    enemy.position = { position: new THREE.Vector3(3, 0, -1) }
+    enemy.position = { vector: new THREE.Vector3(3, 0, -1) }
+    enemy.velocity = { vector: new THREE.Vector3(0.01, 0, 0) }
 
     engine.addGameObject(enemy)
 

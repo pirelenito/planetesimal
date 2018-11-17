@@ -52,19 +52,15 @@ export default class Render implements System {
 
   update(dt: number, gameObjects: GameObject[]) {
     gameObjects.forEach(gameObject => {
-      const mesh = gameObject.mesh
+      const { mesh, position, followCamera } = gameObject
 
       if (!mesh) {
         return
       }
 
-      const position = gameObject.position
-
       if (position) {
-        mesh.mesh.position.copy(position.position)
+        mesh.mesh.position.copy(position.vector)
       }
-
-      const followCamera = gameObject.followCamera
 
       if (followCamera && followCamera.enabled) {
         this.camera.lookAt(mesh.mesh.position)

@@ -1,3 +1,3 @@
 export default interface Position {
-  position: THREE.Vector3
+  vector: THREE.Vector3
 }
