@@ -14,7 +14,7 @@ export default async function game(canvas: HTMLCanvasElement) {
 
   const parser = new vox.Parser()
   const voxelData = await parser.parse(playerVox)
-  const builder = new vox.MeshBuilder(voxelData, { voxelSize: 5 })
+  const builder = new vox.MeshBuilder(voxelData, { voxelSize: 1 })
   const playerMesh = builder.createMesh()
 
   const player = new GameObject()
