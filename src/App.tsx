@@ -26,7 +26,7 @@ class App extends Component<AppProps, {}> {
     const player = new GameObject()
     player.mesh = { mesh: playerMesh }
     player.position = { vector: new THREE.Vector3(0, 0, -1) }
-    player.velocity = { vector: new THREE.Vector3(0, 0.02, 0) }
+    player.velocity = { vector: new THREE.Vector3(0, 0.0002, 0) }
     player.followCamera = { enabled: true }
 
     engine.addGameObject(player)
@@ -38,7 +38,7 @@ class App extends Component<AppProps, {}> {
     const enemy = new GameObject()
     enemy.mesh = { mesh: enemyMesh }
     enemy.position = { vector: new THREE.Vector3(3, 0, -1) }
-    enemy.velocity = { vector: new THREE.Vector3(0.01, 0, 0) }
+    enemy.velocity = { vector: new THREE.Vector3(0.0001, 0, 0) }
 
     engine.addGameObject(enemy)
 
