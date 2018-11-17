@@ -6,7 +6,7 @@ export default class Movement implements System {
     gameObjects.forEach(gameObjects => {
       const { position, velocity } = gameObjects
       if (position && velocity) {
-        position.vector.add(velocity.vector)
+        position.vector.add(velocity.vector.clone().multiplyScalar(dt))
       }
     })
   }
