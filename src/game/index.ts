@@ -2,6 +2,7 @@ import * as THREE from 'three'
 import { Engine, Render, GameObject, Movement, VoxLoader } from '../engine'
 import playerVox from './player.vox'
 import treeVox from './tree.vox'
+import houseVox from './house.vox'
 
 export default async function game(canvas: HTMLCanvasElement) {
   const engine = new Engine()
@@ -22,6 +23,12 @@ export default async function game(canvas: HTMLCanvasElement) {
   tree.position = { vector: new THREE.Vector3(30, 0, -1) }
 
   engine.addGameObject(tree)
+
+  const house = new GameObject()
+  house.vox = { voxUrl: houseVox }
+  house.position = { vector: new THREE.Vector3(-30, 0, -1) }
+
+  engine.addGameObject(house)
 
   engine.start()
 }
