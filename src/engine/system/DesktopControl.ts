@@ -23,8 +23,8 @@ export default class PlayerControl implements System {
     })
 
     window.addEventListener('mousemove', event => {
-      this.inputState.mousePosition = [event.screenX, event.screenY]
-      this.inputState.mouseCanvas = [window.innerHeight, window.innerWidth]
+      this.inputState.mousePosition = [event.x, event.y]
+      this.inputState.mouseCanvas = [window.innerWidth, window.innerHeight]
     })
   }
 

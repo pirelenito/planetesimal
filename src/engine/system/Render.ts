@@ -3,7 +3,7 @@ import System from './System'
 import VoxLoader from '../loader/VoxLoader'
 import GameObject from '../GameObject'
 
-const CAMERA_POSITION = 40
+const CAMERA_POSITION = 200
 
 export default class Render implements System {
   scene: THREE.Scene
@@ -48,7 +48,7 @@ export default class Render implements System {
 
     // get the isometric look
     // see: https://stackoverflow.com/a/23451591
-    camera.position.set(0, CAMERA_POSITION, 0)
+    camera.position.set(CAMERA_POSITION, CAMERA_POSITION, CAMERA_POSITION)
     camera.lookAt(scene.position)
 
     createLights().forEach(light => scene.add(light))
@@ -59,8 +59,6 @@ export default class Render implements System {
   }
 
   update(dt: number, gameObjects: GameObject[]) {
-    console.log(this.scene.position)
-
     gameObjects.forEach(gameObject => {
       const { mesh, translation, followCamera } = gameObject
 
@@ -81,8 +79,7 @@ export default class Render implements System {
       }
 
       if (translation && followCamera && followCamera.enabled) {
-        this.camera.position.setX(translation.position[0])
-        this.camera.position.setZ(translation.position[1])
+        this.camera.position.copy(threeMesh.position.clone().addScalar(CAMERA_POSITION))
       }
 
       if (!this.scene.getObjectById(threeMesh.id)) {
