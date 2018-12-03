@@ -1,6 +1,5 @@
 export { default as Render } from './system/Render'
 export { default as Movement } from './system/Movement'
-export { default as VoxLoader } from './system/VoxLoader'
 export { default as PlayerControl } from './system/PlayerControl'
 export { default as GameObject } from './GameObject'
 export { default as Engine } from './Engine'

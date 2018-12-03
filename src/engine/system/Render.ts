@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import System from './System'
+import VoxLoader from '../loader/VoxLoader'
 import GameObject from '../GameObject'
 
 const CAMERA_POSITION = 40
@@ -8,8 +9,11 @@ export default class Render implements System {
   scene: THREE.Scene
   renderer: THREE.Renderer
   camera: THREE.Camera
+  voxLoader: VoxLoader
 
   constructor(canvas: HTMLCanvasElement) {
+    this.voxLoader = new VoxLoader()
+
     const scene = new THREE.Scene()
     const aspect = window.innerWidth / window.innerHeight
     const frustumSize = 100
@@ -62,16 +66,22 @@ export default class Render implements System {
         return
       }
 
+      const threeMesh = this.voxLoader.get(gameObject)
+
+      if (!threeMesh) {
+        return
+      }
+
       if (position) {
-        mesh.mesh.position.copy(position.vector)
+        threeMesh.position.set(position.vector[0], 0, position.vector[1])
       }
 
       if (followCamera && followCamera.enabled) {
-        this.camera.position.copy(mesh.mesh.position.clone().addScalar(CAMERA_POSITION))
+        this.camera.position.copy(threeMesh.position.clone().addScalar(CAMERA_POSITION))
       }
 
-      if (!this.scene.getObjectById(mesh.mesh.id)) {
-        this.scene.add(mesh.mesh)
+      if (!this.scene.getObjectById(threeMesh.id)) {
+        this.scene.add(threeMesh)
       }
     })
 
