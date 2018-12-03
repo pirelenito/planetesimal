@@ -12,7 +12,7 @@ export default async function game(canvas: HTMLCanvasElement) {
   const player = new GameObject()
   player.player = { isPlayer: true }
   player.mesh = { voxUrl: playerVox }
-  player.translation = { position: [0, 0], scale: 1, rotation: 0 }
+  player.translation = { position: [0, 0], scale: 0.5, rotation: 0.5 }
   player.velocity = { vector: [0.01, 0] }
   player.followCamera = { enabled: true }
 

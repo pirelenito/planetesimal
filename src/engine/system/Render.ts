@@ -74,6 +74,8 @@ export default class Render implements System {
 
       if (translation) {
         threeMesh.position.set(translation.position[0], 0, translation.position[1])
+        threeMesh.rotation.set(0, translation.rotation, 0)
+        threeMesh.scale.set(translation.scale, translation.scale, translation.scale)
       }
 
       if (followCamera && followCamera.enabled) {
