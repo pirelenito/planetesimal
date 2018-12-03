@@ -1,4 +1,4 @@
-import { Engine, Render, GameObject, Movement, DesktopControl } from '../engine'
+import { Engine, Render, GameObject, Movement, DesktopControl, PlayerBehavior } from '../engine'
 import playerVox from './player.vox'
 import treeVox from './tree.vox'
 import houseVox from './house.vox'
@@ -8,6 +8,7 @@ export default async function game(canvas: HTMLCanvasElement) {
   engine.addSystem(new DesktopControl())
   engine.addSystem(new Render(canvas))
   engine.addSystem(new Movement())
+  engine.addSystem(new PlayerBehavior())
 
   const player = new GameObject()
   player.player = { isPlayer: true }
