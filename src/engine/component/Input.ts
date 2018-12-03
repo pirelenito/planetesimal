@@ -3,4 +3,6 @@ export default interface Input {
   right: boolean
   up: boolean
   down: boolean
+  mousePosition: [number, number]
+  mouseCanvas: [number, number]
 }

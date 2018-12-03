@@ -1,5 +1,5 @@
 import Mesh from './component/Mesh'
-import Position from './component/Position'
+import Translation from './component/Translation'
 import Velocity from './component/Velocity'
 import FollowCamera from './component/FollowCamera'
 import Player from './component/Player'
@@ -9,7 +9,7 @@ import id from './id'
 export default class GameObject {
   id: number
   mesh: Mesh | undefined
-  position: Position | undefined
+  translation: Translation | undefined
   velocity: Velocity | undefined
   followCamera: FollowCamera | undefined
   player: Player | undefined

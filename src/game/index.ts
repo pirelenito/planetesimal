@@ -12,7 +12,7 @@ export default async function game(canvas: HTMLCanvasElement) {
   const player = new GameObject()
   player.player = { isPlayer: true }
   player.mesh = { voxUrl: playerVox }
-  player.position = { vector: [0, 0] }
+  player.translation = { position: [0, 0], scale: 1, rotation: 0 }
   player.velocity = { vector: [0.01, 0] }
   player.followCamera = { enabled: true }
 
@@ -20,13 +20,13 @@ export default async function game(canvas: HTMLCanvasElement) {
 
   const tree = new GameObject()
   tree.mesh = { voxUrl: treeVox }
-  tree.position = { vector: [30, -1] }
+  tree.translation = { position: [30, -1], scale: 1, rotation: 0 }
 
   engine.addGameObject(tree)
 
   const house = new GameObject()
   house.mesh = { voxUrl: houseVox }
-  house.position = { vector: [-30, -1] }
+  house.translation = { position: [-30, -1], scale: 1, rotation: 0 }
 
   engine.addGameObject(house)
 

@@ -60,7 +60,7 @@ export default class Render implements System {
 
   update(dt: number, gameObjects: GameObject[]) {
     gameObjects.forEach(gameObject => {
-      const { mesh, position, followCamera } = gameObject
+      const { mesh, translation, followCamera } = gameObject
 
       if (!mesh) {
         return
@@ -72,8 +72,8 @@ export default class Render implements System {
         return
       }
 
-      if (position) {
-        threeMesh.position.set(position.vector[0], 0, position.vector[1])
+      if (translation) {
+        threeMesh.position.set(translation.position[0], 0, translation.position[1])
       }
 
       if (followCamera && followCamera.enabled) {

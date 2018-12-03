@@ -5,13 +5,13 @@ import GameObject from '../GameObject'
 export default class Movement implements System {
   update(dt: number, gameObjects: GameObject[]) {
     gameObjects.forEach(gameObjects => {
-      const { position, velocity } = gameObjects
-      if (position && velocity) {
-        const resultPosition = new Vector2(position.vector[0], position.vector[1]).add(
+      const { translation, velocity } = gameObjects
+      if (translation && velocity) {
+        const resultPosition = new Vector2(translation.position[0], translation.position[1]).add(
           new Vector2(velocity.vector[0], velocity.vector[1]).multiplyScalar(dt),
         )
 
-        position.vector = [resultPosition.x, resultPosition.y]
+        translation.position = [resultPosition.x, resultPosition.y]
       }
     })
   }
