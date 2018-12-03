@@ -1,11 +1,11 @@
-import { Engine, Render, GameObject, Movement, PlayerControl } from '../engine'
+import { Engine, Render, GameObject, Movement, DesktopControl } from '../engine'
 import playerVox from './player.vox'
 import treeVox from './tree.vox'
 import houseVox from './house.vox'
 
 export default async function game(canvas: HTMLCanvasElement) {
   const engine = new Engine()
-  engine.addSystem(new PlayerControl())
+  engine.addSystem(new DesktopControl())
   engine.addSystem(new Render(canvas))
   engine.addSystem(new Movement())
 
