@@ -13,7 +13,7 @@ export default class PlayerBehavior implements System {
         input.mousePosition[1] - input.mouseCanvas[1] / 2,
       )
 
-      const rotation = relativeMousePosition.angle() * -1 + Math.PI / 2
+      const rotation = relativeMousePosition.angle()
 
       gameObject.translation = { ...translation, rotation }
     })
