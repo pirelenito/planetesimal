@@ -25,9 +25,15 @@ export default class VoxLoader implements Loader<THREE.Mesh> {
     const parser = new vox.Parser()
 
     const newPromise = parser.parse(gameObject.mesh.voxUrl).then((voxelData: any) => {
-      const builder = new vox.MeshBuilder(voxelData, { voxelSize: 1 })
-      const mesh = builder.createMesh()
+      const geometry = new THREE.BoxGeometry(5, 2, 3)
+      const material = new THREE.MeshPhongMaterial({
+        color: 0xe4bd11,
+        flatShading: true,
+      })
+
+      const mesh = new THREE.Mesh(geometry, material)
       this.meshes.set(gameObject.id, mesh)
+
       return mesh
     })
 

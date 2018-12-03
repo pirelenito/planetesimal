@@ -48,7 +48,7 @@ export default class Render implements System {
 
     // get the isometric look
     // see: https://stackoverflow.com/a/23451591
-    camera.position.set(CAMERA_POSITION, CAMERA_POSITION, CAMERA_POSITION)
+    camera.position.set(0, CAMERA_POSITION, 0)
     camera.lookAt(scene.position)
 
     createLights().forEach(light => scene.add(light))
@@ -59,6 +59,8 @@ export default class Render implements System {
   }
 
   update(dt: number, gameObjects: GameObject[]) {
+    console.log(this.scene.position)
+
     gameObjects.forEach(gameObject => {
       const { mesh, translation, followCamera } = gameObject
 
@@ -74,12 +76,13 @@ export default class Render implements System {
 
       if (translation) {
         threeMesh.position.set(translation.position[0], 0, translation.position[1])
-        threeMesh.rotation.set(0, translation.rotation * -1 + Math.PI / 4, 0)
+        threeMesh.rotation.set(0, translation.rotation * -1, 0)
         threeMesh.scale.set(translation.scale, translation.scale, translation.scale)
       }
 
-      if (followCamera && followCamera.enabled) {
-        this.camera.position.copy(threeMesh.position.clone().addScalar(CAMERA_POSITION))
+      if (translation && followCamera && followCamera.enabled) {
+        this.camera.position.setX(translation.position[0])
+        this.camera.position.setZ(translation.position[1])
       }
 
       if (!this.scene.getObjectById(threeMesh.id)) {
