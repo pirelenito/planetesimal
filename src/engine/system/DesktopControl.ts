@@ -1,29 +1,30 @@
 import System from './System'
 import GameObject from '../GameObject'
+import Input from '../component/Input'
 
 export default class PlayerControl implements System {
-  buttonState: {
-    left: boolean
-    right: boolean
-    up: boolean
-    down: boolean
-  }
+  inputState: Input
 
   constructor() {
-    this.buttonState = { left: false, right: false, up: false, down: false }
+    this.inputState = { left: false, right: false, up: false, down: false, mousePosition: [0, 0], mouseCanvas: [0, 0] }
 
     window.addEventListener('keydown', event => {
-      if (event.key === 'ArrowUp') this.buttonState.up = true
-      if (event.key === 'ArrowDown') this.buttonState.down = true
-      if (event.key === 'ArrowLeft') this.buttonState.left = true
-      if (event.key === 'ArrowRight') this.buttonState.right = true
+      if (event.key === 'ArrowUp') this.inputState.up = true
+      if (event.key === 'ArrowDown') this.inputState.down = true
+      if (event.key === 'ArrowLeft') this.inputState.left = true
+      if (event.key === 'ArrowRight') this.inputState.right = true
     })
 
     window.addEventListener('keyup', event => {
-      if (event.key === 'ArrowUp') this.buttonState.up = false
-      if (event.key === 'ArrowDown') this.buttonState.down = false
-      if (event.key === 'ArrowLeft') this.buttonState.left = false
-      if (event.key === 'ArrowRight') this.buttonState.right = false
+      if (event.key === 'ArrowUp') this.inputState.up = false
+      if (event.key === 'ArrowDown') this.inputState.down = false
+      if (event.key === 'ArrowLeft') this.inputState.left = false
+      if (event.key === 'ArrowRight') this.inputState.right = false
+    })
+
+    window.addEventListener('mousemove', event => {
+      this.inputState.mousePosition = [event.screenX, event.screenY]
+      this.inputState.mouseCanvas = [window.innerHeight, window.innerWidth]
     })
   }
 
@@ -32,7 +33,7 @@ export default class PlayerControl implements System {
       const { player } = gameObject
 
       if (player && player.isPlayer) {
-        gameObject.input = { ...this.buttonState }
+        gameObject.input = { ...this.inputState }
       }
     })
   }
